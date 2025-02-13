@@ -6,25 +6,25 @@ export default function TodoApp() {
   const [newTodo, setNewTodo] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/todos").then((res) => setTodos(res.data));
+    axios.get("https://rishabh-backend.blockchainaustralia.link/todos").then((res) => setTodos(res.data));
   }, []);
 
   const addTodo = () => {
     if (!newTodo.trim()) return;
-    axios.post("http://localhost:5000/todos", { title: newTodo, completed: false }).then((res) => {
+    axios.post("https://rishabh-backend.blockchainaustralia.link/todos", { title: newTodo, completed: false }).then((res) => {
       setTodos([...todos, res.data]);
       setNewTodo("");
     });
   };
 
   const toggleComplete = (id, completed) => {
-    axios.put(`http://localhost:5000/todos/${id}`, { completed: !completed }).then((res) => {
+    axios.put(`https://rishabh-backend.blockchainaustralia.link/todos/${id}`, { completed: !completed }).then((res) => {
       setTodos(todos.map(todo => todo._id === id ? res.data : todo));
     });
   };
 
   const deleteTodo = (id) => {
-    axios.delete(`http://localhost:5000/todos/${id}`).then(() => {
+    axios.delete(`https://rishabh-backend.blockchainaustralia.link/todos/${id}`).then(() => {
       setTodos(todos.filter(todo => todo._id !== id));
     });
   };
