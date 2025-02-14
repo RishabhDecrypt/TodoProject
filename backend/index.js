@@ -32,6 +32,9 @@ app.get("/todos", async (req, res) => {
   res.json(todos);
 });
 
+app.get("/", async (req, res) => {
+  res.send("todos");
+});
 // Update Task
 app.put("/todos/:id", async (req, res) => {
   const todo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
